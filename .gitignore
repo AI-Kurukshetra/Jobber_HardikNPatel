@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+!.next/cache/package.json
+
+# Build / tooling
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.turbo/
+coverage/
+
+# Env
+.env
+.env.local
+.env.*
+*.env.local
+
+# Misc
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Supabase
+supabase/.branches
+supabase/.temp
