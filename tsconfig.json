@@ -18,8 +18,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "types": [
-      "node",
-      "jest"
+      "node"
     ],
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",

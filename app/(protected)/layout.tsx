@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import type { Route } from "next";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/button";
 
-const nav = [
+const nav: { href: Route; label: string }[] = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/customers", label: "Customers" },
   { href: "/quotes", label: "Quotes" },
@@ -60,7 +61,7 @@ export default async function ProtectedLayout({ children }: { children: React.Re
             <p className="text-xs uppercase text-slate-500">Workspace</p>
             <p className="font-semibold text-slate-900">Company context via RLS</p>
           </div>
-          <Link href="/settings" className="text-sm text-slate-600 hover:text-slate-900">
+          <Link href={"/settings" as Route} className="text-sm text-slate-600 hover:text-slate-900">
             Settings
           </Link>
         </header>

@@ -53,7 +53,7 @@ export default function CustomersPage() {
       customers.filter(
         (c) =>
           c.name.toLowerCase().includes(term) ||
-          c.email.toLowerCase().includes(term) ||
+          (c.email?.toLowerCase().includes(term) ?? false) ||
           c.tags.some((t) => t.toLowerCase().includes(term))
       )
     );

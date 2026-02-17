@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import type { Route } from "next";
 import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,8 +29,12 @@ export default function SignInPage() {
     if (signInError) {
       setError(signInError.message);
     } else {
-      const redirectTarget = searchParams.get("redirectedFrom") ?? "/dashboard";
-      router.replace(redirectTarget);
+      // only allow internal absolute paths to avoid open-redirect issues
+      const redirectTarget = searchParams.get("redirectedFrom");
+      // narrow to Next.js Route type so router.replace accepts it
+      const destination = (redirectTarget?.startsWith("/") ? redirectTarget : "/dashboard") as Route;
+
+      router.replace(destination);
       // ensure server components pick up the new session cookie
       router.refresh();
     }

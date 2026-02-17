@@ -45,8 +45,8 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   if (payload.expires_at) payload.expires_at = new Date(payload.expires_at);
 
   // If items provided, recompute totals
-  if (payload.items) {
-    const items = payload.items;
+  if (parsed.data.items) {
+    const items = parsed.data.items;
     const subtotal = items.reduce((sum, i) => sum + i.quantity * i.unit_price, 0);
     const tax = items.reduce((sum, i) => sum + i.quantity * i.unit_price * (i.tax_rate ?? 0) / 100, 0);
     payload.subtotal = subtotal;
